@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Hello World') {
             steps {
-                echo 'Bonjour le monde ! Je teste mon pipeline'
+                echo 'Bonjour Samir ! Je teste mon pipeline'
             }
         }
     }
