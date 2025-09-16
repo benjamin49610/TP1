@@ -11,7 +11,7 @@ pipeline {
               steps {
                 script {
                     def imageName = "benjamin49610/mywebsite:${env.BUILD_NUMBER}"
-                    sh 'docker build -t ${imageName} .'
+                    sh "docker build -t ${imageName} ."
                 }
             }
         }
@@ -19,9 +19,9 @@ pipeline {
               steps {
                 script {
                     withCredentials([string(credentialsId: 'docker_hub', variable: 'docker_hub')]) {
-                    sh 'docker login -u benjamin49610 -p ${docker_hub}'
+                    sh "docker login -u benjamin49610 -p ${docker_hub}"
                                                              }
-                    sh 'docker push ${imageName}'
+                    sh "docker push ${imageName}"
                 }
             }
         }
