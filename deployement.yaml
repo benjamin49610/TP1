@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: myfirstdocker-container
-        image: benjamin49610/mywebsite:lastet
-        imagePullPolicy: Never
+        image: benjamin49610/myfirstdocker
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
       imagePullSecrets:
