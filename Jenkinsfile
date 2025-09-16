@@ -10,7 +10,7 @@ pipeline {
         stage('Build Docker Image') {
               steps {
                 script {
-                    def imageName = "benjamin49610/mywebsite:${env.BUILD_NUMBER}-${gitCommitShort}"
+                    def imageName = "benjamin49610/mywebsite:${env.BUILD_NUMBER}"
                     sh 'docker build -t ${imageName} .'
                 }
             }
