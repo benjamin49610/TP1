@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: myfirstdocker
+  name: myfirstdocker-deployement
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myfirstdocker
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: myfirstdocker
+    spec:
+      imagePullSecrets:
+      - name: regcred
+      containers:
+      - image: benjamin49610/myfirstdocker
+        name: myfirstdocker
+        imagePullPolicy: Never  # this is addition
+        resources: {}
+        ports:
+        - containerPort: 80 
+status: {}
