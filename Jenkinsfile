@@ -25,7 +25,6 @@ pipeline {
         stage('Deployement on Kube') {
              steps {
                 script {
-                {
                         withKubeConfig([credentialsId: 'minikubeID']) {
                             sh 'minikube kubectl -- apply -f deployment.yaml'
                             sh 'minikube kubectl -- get pods'
@@ -34,7 +33,6 @@ pipeline {
                 }
             }
     }
-}
 }
 
 
