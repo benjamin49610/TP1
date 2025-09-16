@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build Docker Image') {
               steps {
-              sh 'docker build -t myfirstdocker .'
+              sh 'docker build -t benjamin49610/myfirstdocker .'
             }
         }
         stage('Push the Docker Image to DockerHUb') {
@@ -18,7 +18,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'docker_hub', variable: 'docker_hub')]) {
                     sh 'docker login -u benjamin49610 -p ${docker_hub}'
                                                              }
-                    sh 'docker push myfirstdocker'
+                    sh 'docker push benjamin49610/myfirstdocker'
                 }
             }
         }
