@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: myfirstdocker-container
-        image: benjamin49610/myfirstdocker
+        image: benjamin49610/mywebsite
         imagePullPolicy: Never
         ports:
         - containerPort: 80

@@ -11,18 +11,23 @@ pipeline {
               steps {
                 script {
                     def imageName = "benjamin49610/mywebsite:${env.BUILD_NUMBER}"
-                    sh "docker build -t ${imageName} ."
+                    def latestTag = "benjamin49610/mywebsite:latest"
+                    sh "docker build -t ${imageName} -t ${latestTag} ."
                 }
             }
         }
         stage('Push the Docker Image to DockerHUb') {
               steps {
                 script {
+                
+                    def imageName = "benjamin49610/mywebsite:${env.BUILD_NUMBER}"
+                    def latestTag = "benjamin49610/mywebsite:latest"
                     withCredentials([string(credentialsId: 'docker_hub', variable: 'docker_hub')]) {
-                    
+
                     sh """
                     docker login -u benjamin49610 -p ${docker_hub}
-                    docker push benjamin49610/mywebsite:${env.BUILD_NUMBER}"""
+                    docker push benjamin49610/mywebsite:${env.BUILD_NUMBER}
+                    docker push ${latestTag}"""
                 }
             }
             }
