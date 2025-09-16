@@ -22,6 +22,10 @@ pipeline {
                 }
             }
         }
+        stage('Check PATH') {
+        steps {
+            sh 'echo $PATH'
+        }
         stage('Deployement on Kube') {
              steps {
                 script {
