@@ -22,13 +22,11 @@ pipeline {
                 }
             }
         }
-
-
-
-
-
-
-
-
+        stage('Deployement on Kube') {
+             steps {
+                script {
+                    kubernetesDeploy configs: 'deployement.yaml', kubeconfigId: 'kubernetes_config'
+                }
+        }
     }
 }
