@@ -30,7 +30,7 @@ pipeline {
         stage('Deployement on Kube') {
              steps {
                 script {
-                        withKubeConfig([credentialsId: 'minikubeID', serverUrl: 'https://192.168.49.2:8443']) {
+                        withKubeConfig([credentialsId: 'minikubeID', caCertificate: '/var/lib/jenkins/kube_ca.cert',  serverUrl: 'https://192.168.49.2:8443']) {
                             sh 'minikube kubectl -- apply -f deployment.yaml'
                             sh 'minikube kubectl -- get pods'
                         }
