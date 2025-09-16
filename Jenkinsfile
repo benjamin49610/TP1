@@ -22,7 +22,7 @@ pipeline {
                     
                     sh """
                     docker login -u benjamin49610 -p ${docker_hub}
-                    docker push ${imageName}"""
+                    docker push benjamin49610/mywebsite:${env.BUILD_NUMBER}"""
                 }
             }
             }
