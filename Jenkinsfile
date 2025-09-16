@@ -26,6 +26,7 @@ pipeline {
         steps {
             sh 'echo $PATH'
         }
+        } 
         stage('Deployement on Kube') {
              steps {
                 script {
