@@ -9,7 +9,10 @@ pipeline {
         }
         stage('Build Docker Image') {
               steps {
-              sh 'docker build -t benjamin49610/myfirstdocker .'
+                script {
+                    def imageName = "benjamin49610/mywebsite:${env.BUILD_NUMBER}-${gitCommitShort}"
+                    sh 'docker build -t ${imageName} .'
+                }
             }
         }
         stage('Push the Docker Image to DockerHUb') {
@@ -18,7 +21,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'docker_hub', variable: 'docker_hub')]) {
                     sh 'docker login -u benjamin49610 -p ${docker_hub}'
                                                              }
-                    sh 'docker push benjamin49610/myfirstdocker'
+                    sh 'docker push ${imageName}'
                 }
             }
         }
@@ -26,7 +29,7 @@ pipeline {
         steps {
             sh 'echo $PATH'
         }
-        } 
+        }
         stage('Deployement on Kube') {
              steps {
                 script {
@@ -39,5 +42,4 @@ pipeline {
             }
     }
 }
-
 
