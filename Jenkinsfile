@@ -25,11 +25,10 @@ pipeline {
         stage('Deployement on Kube') {
              steps {
                 script {
-                    // Charger le fichier kubeconfig en toute sécurité
                     withCredentials([file(credentialsId: 'minikubeID', variable: 'KUBECONFIG')]) {
                         withKubeConfig([credentialsId: 'minikubeID']) {
-                            sh 'kubectl apply -f deployment.yaml'
-                            sh 'kubectl get pods'
+                            sh 'minikube kubectl -- apply -f deployment.yaml'
+                            sh 'minikube kubectl -- get pods'
                         }
                     }
                 }
@@ -37,4 +36,5 @@ pipeline {
     }
 }
 }
+
 
